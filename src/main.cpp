@@ -18,8 +18,8 @@ int main(int argc, char **argv)
 	string hexvalues;
 	//check argc
 	if (argc != 3) {
-		cout << " Usage\n\t" 
-			<< argv[0] << " <file> " << " <hex_value> ";
+		cout << " Usage\n\t"
+		    << argv[0] << " <file> " << " <hex_value> ";
 		exit(1);
 	}
 
@@ -42,14 +42,15 @@ int main(int argc, char **argv)
 		cout << "found";
 }
 
-int checker(string pattrn,string hexvalue) {
-    string pattern(pattrn);
-    regex rx(pattern);
-    
-    string s(hexvalue);
-    ptrdiff_t number_of_matches = distance(
-        sregex_iterator(s.begin(), s.end(), rx),
-        sregex_iterator());
-    
-    return number_of_matches;
+int checker(string pattrn, string hexvalue)
+{
+	string pattern(pattrn);
+	regex rx(pattern);
+
+	string s(hexvalue);
+	ptrdiff_t number_of_matches =
+	    distance(sregex_iterator(s.begin(), s.end(), rx),
+		     sregex_iterator());
+
+	return number_of_matches;
 }
