@@ -1,35 +1,43 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <json/value.h>
 #include <regex>
 #include "libs/hexlib.hpp"
+#include "libs/simpleIni.h"
 
 #define pass (void)0
 
 using namespace std;
 
-int checker(string, string);
+void checker(string, string, string);
 
 int main(int argc, char **argv)
 {
-
-	char ch;
-	string hexvalues;
 	//check argc
 	if (argc != 3) {
 		cout << " Usage\n\t"
-		    << argv[0] << " <file> " << " <hex_value> ";
+		    << argv[0] << " <file> " << " <ini_file> ";
 		exit(1);
 	}
 
+	char ch;
+	string hexvalues;
+	CSimpleIniA ini;
+	CSimpleIniA::TNamesDepend sections;
+	SI_Error rc = ini.LoadFile(argv[2]);
 	ifstream fin(argv[1], ios::binary);
 
+	// Open Files Error Handling 
 	if (!fin) {
-		cout << "\nFailed..." << endl;
+		cout << "Error : Cannot Open " << argv[1] << endl;
 		exit(1);
 	}
 
+	if (rc < 0) {
+		cout << "Error : Cannot Open " << argv[2] << endl;
+		exit(1);
+	}
+	// Getting file bytes into hexvalues var
 	for (int i = 0; !fin.eof(); i++) {
 		fin.get(ch);
 		hexvalues.push_back(ch);
@@ -38,11 +46,18 @@ int main(int argc, char **argv)
 	fin.close();
 	hexvalues = string_to_hex(hexvalues);
 
-	if (checker(argv[2], hexvalues) != 0)
-		cout << "found";
+	//Getting ini file Sections & Sign Value
+	ini.GetAllSections(sections);
+	for (auto it = sections.begin(); it != sections.end(); ++it) {
+		checker(ini.GetValue(it->pItem, "sign", ""),
+			hexvalues, it->pItem);
+
+	}
+
+	return 0;
 }
 
-int checker(string pattrn, string hexvalue)
+void checker(string pattrn, string hexvalue, string section)
 {
 	string pattern(pattrn);
 	regex rx(pattern);
@@ -52,5 +67,8 @@ int checker(string pattrn, string hexvalue)
 	    distance(sregex_iterator(s.begin(), s.end(), rx),
 		     sregex_iterator());
 
-	return number_of_matches;
+	if (number_of_matches > 0) {
+		cout << section << " : " << pattrn << " Found!!!" << endl;
+	}
+
 }
