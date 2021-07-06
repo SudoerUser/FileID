@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void checker(string, string, string);
+void checker(string, string, string , string);
 
 int main(int argc, char **argv)
 {
@@ -49,17 +49,24 @@ int main(int argc, char **argv)
 	//Getting ini file Sections & Sign Value
 	ini.GetAllSections(sections);
 	for (auto it = sections.begin(); it != sections.end(); ++it) {
-		checker(ini.GetValue(it->pItem, "sign", ""),
-			hexvalues, it->pItem);
+		checker(
+			ini.GetValue(it->pItem, "sign", ""),
+			hexvalues,
+			it->pItem,
+			ini.GetValue(it->pItem, "ep_verify", ""));
 
 	}
 
 	return 0;
 }
 
-void checker(string pattrn, string hexvalue, string section)
+void checker(string pattrn, string hexvalue, string section,string ep_verify)
 {
 	string pattern(pattrn);
+	if(ep_verify == "true"){
+		string pattrn = string(pattrn.cbegin(), pattrn.cbegin() + 1920);
+		string pattern(pattrn);
+	}
 	regex rx(pattern);
 
 	string s(hexvalue);
