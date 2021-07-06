@@ -64,7 +64,7 @@ void checker(string pattrn, string hexvalue, string section,string ep_verify)
 {
 	string pattern(pattrn);
 	if(ep_verify == "true"){
-		string pattrn = string(pattrn.cbegin(), pattrn.cbegin() + 1920);
+		string pattrn = string(pattrn.cbegin(), pattrn.cbegin() + 4288);
 		string pattern(pattrn);
 	}
 	regex rx(pattern);
