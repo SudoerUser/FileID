@@ -65,41 +65,41 @@ int main(int argc, char **argv)
 			break;
 
 		switch (c) {
-		case 'a':
-			aflag = 1;
-			avalue = optarg;
-			break;
-		case 'c':
-			cflag = 1;
-			cvalue = optarg;
-			break;
-		case 'd':
-			dflag = 1;
-			dvalue = optarg;
-			break;
-		case 'i':
-			iflag = 1;
-			ivalue = optarg;
-			break;
-		case 'f':
-			fflag = 1;
-			fvalue = optarg;
-			break;
-		case 's':
-			sflag = 1;
-			break;
-		case 'v':
-			vflag = 1;
-			vvalue = optarg;
-			break;
-		case 'n':
-			nflag = 1;
-			nvalue = optarg;
-			break;
+			case 'a':
+				aflag = 1;
+				avalue = optarg;
+				break;
+			case 'c':
+				cflag = 1;
+				cvalue = optarg;
+				break;
+			case 'd':
+				dflag = 1;
+				dvalue = optarg;
+				break;
+			case 'i':
+				iflag = 1;
+				ivalue = optarg;
+				break;
+			case 'f':
+				fflag = 1;
+				fvalue = optarg;
+				break;
+			case 's':
+				sflag = 1;
+				break;
+			case 'v':
+				vflag = 1;
+				vvalue = optarg;
+				break;
+			case 'n':
+				nflag = 1;
+				nvalue = optarg;
+				break;
 
-		default:
-			banner(argv[0]);
-		}
+			default:
+				banner(argv[0]);
+			}
 	}
 
 	if (((iflag && fflag) == 1)
