@@ -2,12 +2,12 @@
 # FileID
 
 
-**FileID** is a Simple Tool To Detect Binary File Types By Hexadecimal Signatures. FileID Uses Regex for Searching in Binary File.
+**FileID** is a simple tool to detect binary file types by hexadecimal signatures. FileID uses regex for searching in binary file.
 
-**How To Work with FileID?**
+**How to work with FileID?**
 
-This Program is Very Easy to use.
-Use ```make``` Command To Compile The Source Code. and in Result You See This:
+This program is very easy to use.
+Use ```make``` command to compile the source code. and in result you see this:
 ```bash
 [amir@Sudoer bin (master)]$ ./FileID
 Usage:./FileID[OPTION]....[OPTION].....

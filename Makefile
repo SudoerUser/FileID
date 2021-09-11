@@ -1,8 +1,8 @@
 install:
-
-	@mkdir ./bin
-	g++ ./src/main.cpp -o ./bin/FileID
-	@cp ./src/userdb.ini ./bin/userdb.ini
+	@g++ ./src/main.cpp -o ./fileid -lsqlite3
 	@echo Compiled
 remove:
-	@rm -rf ./bin
+	@rm -rf ./fileid
+
+
+
